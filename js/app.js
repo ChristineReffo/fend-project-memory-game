@@ -33,23 +33,21 @@ function shuffle(cardArray) {
     makeDeck(cardArray);
 }
 
-//**Destructure the array of shuffled cards to get to their HTML**//
 
 
-
-// needs to be tested in console//
+// needs to be tested in console --> only remakes the deck not the cards;
 
 function makeDeck(cardArray) {
     const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
-
-    cardDeck.empty();
+    const scorePanel = document.querySelector('.score-panel');
+    cardDeck.remove('.card');
 
     for (let i = 0; i < cardArray.length; i++) {
-          return cardArray[i];
 
           fragment.appendChild(cardArray[i]);
 
 }
+          scorePanel.insertAdjacentHTML('afterend', '<ul class = "deck">');
           cardDeck.appendChild(fragment);
 }
 
