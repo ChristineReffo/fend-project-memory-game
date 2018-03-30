@@ -1,7 +1,14 @@
 /*
  * Create a list that holds all of your cards
  */
+const cardDeck = document.querySelector('.deck');
+const allCards = document.querySelectorAll('.card');
+let openCards = [];
+let cardArray = [];
 
+for(let i = 0; i<allCards.length; i++) {
+  cardArray.push(allCards[i]);
+}
 
 /*
  * Display the cards on the page
@@ -11,19 +18,48 @@
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+function shuffle(cardArray) {
+    var currentIndex = cardArray.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = cardArray[currentIndex];
+        cardArray[currentIndex] = cardArray[randomIndex];
+        cardArray[randomIndex] = temporaryValue;
     }
 
-    return array;
+    return cardArray;
+    makeDeck(cardArray);
 }
+
+//**Destructure the array of shuffled cards to get to their HTML**//
+
+
+
+// needs to be tested in console//
+
+function makeDeck(cardArray) {
+    const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
+
+    cardDeck.empty();
+
+    for (let i = 0; i < cardArray.length; i++) {
+          return cardArray[i];
+
+          fragment.appendChild(cardArray[i]);
+
+}
+          cardDeck.appendChild(fragment);
+}
+
+
+
+// reset grid on click
+let restart = document.querySelector('.restart')
+
+restart.addEventListener('click', shuffle());
+
 
 
 /*
