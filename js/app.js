@@ -3,11 +3,17 @@
  */
 const cardDeck = document.querySelector('.deck');
 const allCards = document.querySelectorAll('.card');
+const allSymbols = document.querySelectorAll('.i');
+let symbolArray = [];
 let openCards = [];
 let cardArray = [];
 
 for(let i = 0; i<allCards.length; i++) {
   cardArray.push(allCards[i]);
+}
+
+for(let i = 0; i<allSymbols.length; i++) {
+  symbolArray.push(allSymbols[i]);
 }
 
 /*
@@ -18,6 +24,42 @@ for(let i = 0; i<allCards.length; i++) {
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
+function makeDeck(cardArray) {
+  const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
+
+  cardDeck.remove('i');
+  document.querySelector('.score-panel').insertAdjacentHTML('afterend', "<ul class = 'deck'></ul>");
+
+    for (let i = 0; i < cardArray[i].length; i++) {
+
+          let cardHTML = cardArray[i].outerHTML;
+
+          fragment.inserAdjacentHTML(cardHTML);
+
+
+          // let cardHTML = document.createElement('li');
+
+//           cardHTML.className('card');
+//
+//           fragment.appendChild(cardHTML)
+// }
+//           cardDeck.appendChild(fragment);
+//
+//     for(let j = 0; j < cardArray[i].length; j++) {
+//
+//           let symbolHTML = document.createElement('i');
+//           let symbol = 'symbolArray[i].className';
+//
+//
+//           symbolHTML.className(symbol);
+//
+//           fragment.find('li').last().append(symbolHTML);
+//
+//             }
+//
+// }
+
+
 function shuffle(cardArray) {
     var currentIndex = cardArray.length, temporaryValue, randomIndex;
 
@@ -30,26 +72,14 @@ function shuffle(cardArray) {
     }
 
     return cardArray;
-    makeDeck(cardArray);
+    makeDeck(cardArray, symbolArray);
 }
 
 
 
 // needs to be tested in console --> only remakes the deck not the cards;
 
-function makeDeck(cardArray) {
-    const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
-    const scorePanel = document.querySelector('.score-panel');
-    cardDeck.remove('.card');
 
-    for (let i = 0; i < cardArray.length; i++) {
-
-          fragment.appendChild(cardArray[i]);
-
-}
-          scorePanel.insertAdjacentHTML('afterend', '<ul class = "deck">');
-          cardDeck.appendChild(fragment);
-}
 
 
 
