@@ -112,23 +112,20 @@ let arrAllMatchedCards = [];
 
 }
 
-function matchCards(){
-  if(arrOpen.length === 2 && arrOpen[i] == $(this) {
-    // add class match to the two items
-
-    else if(arrOpen.length === 2 && arrOpen[i] !== $(this) {
-      // toggle open class to the open Cards
-    }
-
-    else (arrOpen.length === 1)
+// function matchCards(){
+//     if(arrOpen.length === 2 && arrOpen[i] == $(this)){
+//     // add  class match to the two items
+//
+//     else if(arrOpen.length === 2 && arrOpen[i] !== $(this) {
+//       // toggle open class to the open Cards
+//     }
+//
+//     else (arrOpen.length === 1)
 
       // add class Open to the card --> call function openCards??
 
-  }
+  })
 
-}
-
-})
 
 
 
