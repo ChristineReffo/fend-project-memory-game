@@ -2,6 +2,8 @@ $(document).ready(function(){
 /*
  * Create a list that holds all of your cards
  */
+// Add timer to turn around cards again
+// add timer to not allow more than 2 cards
 
 
 /*
@@ -12,11 +14,6 @@ $(document).ready(function(){
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-
-
-// Issues with identifiers, work only sporadically
-
-
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -41,7 +38,7 @@ cardDeck.removeChild(cardDeck.lastChild);
 }
 
 function makeDeck() {
-  const cardArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicyle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicylce", "fa fa-paper-plane-o", "fa faf-cube"];
+  const cardArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
 
   shuffle(cardArray);
@@ -69,10 +66,67 @@ function makeDeck() {
 
 }
 
-// reset grid on click !!! ONLY CONSOLE LOG TEST WORKS at the moment
+// reset grid on click
 let restart = document.querySelector('.fa-repeat')
 
 restart.addEventListener('click', makeDeck);
+
+
+cardDeck.addEventListener("click", function(event){
+
+    event.target.classList.add('open', 'show');
+})
+
+// *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+function arrayClickedCards() {
+  let cardsOpen = document.querySelectorAll('.open');
+  let arrOpen = [];
+
+  arrClickedCards.push(...cardsOpen);
+
+}
+
+function displayCards(){
+  arrClickedCards.toggle('open', 'show');
+}
+
+function matchedCards(){
+  arrClickedCards.toggle('open', 'show', 'match');
+}
+
+function noMatch(){
+  arrClickedCards.toggle('open', 'show');
+}
+
+function endOfGame(){
+let allMatchedCards = document.querySelectorAll('match')
+let arrAllMatchedCards = [];
+
+  arrAllMatchedCards.push(...allMatchedCards);
+
+  if(arrAllMatchedCards.length === "16") {
+    // display message with final score
+  }
+
+  // else (continue game)
+
+}
+
+function matchCards(){
+  if(arrOpen.length === 2 && arrOpen[i] == $(this) {
+    // add class match to the two items
+
+    else if(arrOpen.length === 2 && arrOpen[i] !== $(this) {
+      // toggle open class to the open Cards
+    }
+
+    else (arrOpen.length === 1)
+
+      // add class Open to the card --> call function openCards??
+
+  }
+
+}
 
 })
 
