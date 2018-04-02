@@ -1,21 +1,8 @@
+$(document).ready(function(){
 /*
  * Create a list that holds all of your cards
  */
 
-const cardDeck = document.querySelector('.deck');
-const allCards = document.querySelectorAll('.card');
-const allSymbols = document.querySelectorAll('.i');
-let symbolArray = [];
-let openCards = [];
-let cardArray = [];
-
-for(let i = 0; i<allCards.length; i++) {
-  cardArray.push(allCards[i]);
-}
-
-for(let i = 0; i<allSymbols.length; i++) {
-  symbolArray.push(allSymbols[i]);
-}
 
 /*
  * Display the cards on the page
@@ -30,54 +17,64 @@ for(let i = 0; i<allSymbols.length; i++) {
 // Issues with identifiers, work only sporadically
 
 
-function shuffle(cardArray) {
-    var currentIndex = cardArray.length, temporaryValue, randomIndex;
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = cardArray[currentIndex];
-        cardArray[currentIndex] = cardArray[randomIndex];
-        cardArray[randomIndex] = temporaryValue;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
 
-    return cardArray;
-    makeDeck(cardArray);
+    return array;
 }
 
+const cardDeck = document.querySelector('.deck');
+// the while loop for child removal from url = https://siongui.github.io/2012/09/26/javascript-remove-all-children-of-dom-element/, God bless!
+function childRemoval() {
+
+  while (cardDeck.hasChildNodes()) {
+cardDeck.removeChild(cardDeck.lastChild);
+}
+}
+
+function makeDeck() {
+  const cardArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicyle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicylce", "fa fa-paper-plane-o", "fa faf-cube"];
 
 
-// needs to be tested in console --> only remakes the deck not the cards;
-function makeDeck(cardArray) {
+  shuffle(cardArray);
+
+  childRemoval();
+
   const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
 
-// remove the HTML structure of the cards in order to add the shuffled ones
-  cardDeck.remove('i');
+    for (let i = 0; i < cardArray.length; i++) {
+        let newLi = document.createElement('li');
+        let newLiClass = newLi.classList.add('card');
+        let newI = document.createElement('i');
+        let newIClass = newI.classList = cardArray[i];
 
-// by removing the i tags, the entire list container is removed as well, so I need to add that back in
-  document.querySelector('.score-panel').insertAdjacentHTML('afterend', "<ul class = 'deck'></ul>");
+        newLi;
+        newLiClass;
+        fragment.appendChild(newLi);
 
-//  looping through the array of cards to extract the HTML structure including the symbol, to then add it to the HTML
-    for (let i = 0; i < cardArray[i].length; i++) {
-
-          let cardHTML = cardArray[i].outerHTML;
-
-          fragment.insertAdjacentHTML('beforeend', "cardHTML");
+        newI;
+        newIClass;
+        newLi.appendChild(newI);
         }
 
-      document.cardDeck.appendChild(fragment);
+      cardDeck.appendChild(fragment);
 
 }
-
-
-
 
 // reset grid on click !!! ONLY CONSOLE LOG TEST WORKS at the moment
 let restart = document.querySelector('.fa-repeat')
 
-restart.addEventListener('click', function shuffle(cardArray) {
-  console.log("the button was clicked");
-});
+restart.addEventListener('click', makeDeck);
+
+})
 
 
 
