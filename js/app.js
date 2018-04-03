@@ -71,60 +71,68 @@ let restart = document.querySelector('.fa-repeat')
 
 restart.addEventListener('click', makeDeck);
 
-
+// * Add event Listener to card deck with delegation to its child nodes
 cardDeck.addEventListener("click", function(event){
+      turnCard();
+      listOpenCards();
 
+      if(arrOpenCards.length === 2){
+            checkMatch();
+}});
+
+
+function checkMatch(){
+      if(arrOpenCards[0].innerHTML !== arrOpenCards[1].innerHTML) {
+          noMatch();
+      } else {
+          match();
+          listMatchedCards();
+      }
+};
+
+
+function turnCard() {
     event.target.classList.add('open', 'show');
-})
-
-// *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-function arrayClickedCards() {
-  let cardsOpen = document.querySelectorAll('.open');
-  let arrOpen = [];
-
-  arrClickedCards.push(...cardsOpen);
-
 }
 
-function displayCards(){
-  arrClickedCards.toggle('open', 'show');
+function listOpenCards() {
+  cardsOpen = document.querySelectorAll('.open');
+  arrOpenCards = [];
+
+  arrOpenCards.push(...cardsOpen);
 }
 
-function matchedCards(){
-  arrClickedCards.toggle('open', 'show', 'match');
+  function match(){
+    listOpenCards();
+  arrOpenCards[0].classList.remove('open', 'show');
+  arrOpenCards[1].classList.remove('open', 'show');
+  arrOpenCards[0].classList.add('match');
+  arrOpenCards[1].classList.add('match');
 }
 
-function noMatch(){
-  arrClickedCards.toggle('open', 'show');
+  function noMatch(){
+    listOpenCards();
+  arrOpenCards[0].classList.remove('open', 'show');
+  arrOpenCards[1].classList.remove('open', 'show');
 }
 
-function endOfGame(){
-let allMatchedCards = document.querySelectorAll('match')
-let arrAllMatchedCards = [];
+function listMatchedCards(){
+  allMatchedCards = document.querySelectorAll('.match');
+  arrAllMatchedCards = [];
 
   arrAllMatchedCards.push(...allMatchedCards);
+}
+// else if(arrAllMatchedCards.length == "16"){
+    // endOfGame();
+function endOfGame(){
+  console.log("the functioning works")
+}
 
-  if(arrAllMatchedCards.length === "16") {
-    // display message with final score
-  }
-
-  // else (continue game)
+function moveCounter(){
 
 }
 
-// function matchCards(){
-//     if(arrOpen.length === 2 && arrOpen[i] == $(this)){
-//     // add  class match to the two items
-//
-//     else if(arrOpen.length === 2 && arrOpen[i] !== $(this) {
-//       // toggle open class to the open Cards
-//     }
-//
-//     else (arrOpen.length === 1)
-
-      // add class Open to the card --> call function openCards??
-
-  })
+})
 
 
 
