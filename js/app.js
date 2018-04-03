@@ -80,7 +80,6 @@ cardDeck.addEventListener("click", function(event){
             checkMatch();
 }});
 
-
 function checkMatch(){
       if(arrOpenCards[0].innerHTML !== arrOpenCards[1].innerHTML) {
           noMatch();
@@ -88,8 +87,7 @@ function checkMatch(){
           match();
           listMatchedCards();
       }
-};
-
+}
 
 function turnCard() {
     event.target.classList.add('open', 'show');
@@ -103,18 +101,19 @@ function listOpenCards() {
 }
 
   function match(){
-    listOpenCards();
   arrOpenCards[0].classList.remove('open', 'show');
   arrOpenCards[1].classList.remove('open', 'show');
   arrOpenCards[0].classList.add('match');
   arrOpenCards[1].classList.add('match');
 }
 
-  function noMatch(){
-    listOpenCards();
-  arrOpenCards[0].classList.remove('open', 'show');
-  arrOpenCards[1].classList.remove('open', 'show');
+function noMatch(){
+    setTimeout(function(){
+      arrOpenCards[0].classList.remove('open', 'show');
+      arrOpenCards[1].classList.remove('open', 'show');
+    }, 1000);
 }
+
 
 function listMatchedCards(){
   allMatchedCards = document.querySelectorAll('.match');
