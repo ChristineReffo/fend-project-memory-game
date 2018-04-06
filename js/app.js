@@ -1,17 +1,16 @@
 $(document).ready(function(){
-/*
- * Create a list that holds all of your cards
- */
-// Add timer to turn around cards again
-// add timer to not allow more than 2 cards
 
+let cards = document.querySelectorAll('.card');
+let cardsOpen = document.querySelectorAll('.open');
+let arrOpenCards = [];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+let allMatchedCards = document.querySelectorAll('.match');
+let arrAllMatchedCards = [];
+
+const cardDeck = document.querySelector('.deck');
+const cardArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
+
+let moves = 0
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -28,7 +27,7 @@ function shuffle(array) {
     return array;
 }
 
-const cardDeck = document.querySelector('.deck');
+
 // the while loop for child removal from url = https://siongui.github.io/2012/09/26/javascript-remove-all-children-of-dom-element/, God bless!
 function childRemoval() {
 
@@ -38,11 +37,9 @@ cardDeck.removeChild(cardDeck.lastChild);
 }
 
 function makeDeck() {
-  const cardArray = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
-
+  overlayOff();
   shuffle(cardArray);
-
   childRemoval();
 
   const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
@@ -67,18 +64,34 @@ function makeDeck() {
 }
 
 // reset grid on click
-let restart = document.querySelector('.fa-repeat')
+let restart = document.querySelector('.fa-repeat');
 
-restart.addEventListener('click', makeDeck);
+restart.addEventListener('click', function(){
+    makeDeck();
+    startTiming();
+});
+
+let button = document.querySelector('.button');
+
+button.addEventListener('click', function(){
+    button.style.display = "none";
+    makeDeck();
+    startTiming();
+
+});
 
 // * Add event Listener to card deck with delegation to its child nodes
-cardDeck.addEventListener("click", function(event){
-      turnCard();
-      listOpenCards();
+cardDeck.addEventListener('click', function(event){
 
-      if(arrOpenCards.length === 2){
+          turnCard();
+          listOpenCards();
+
+
+        if(arrOpenCards.length === 2){
             checkMatch();
-}});
+          }
+
+      })
 
 function checkMatch(){
       if(arrOpenCards[0].innerHTML !== arrOpenCards[1].innerHTML) {
@@ -91,6 +104,7 @@ function checkMatch(){
 
 function turnCard() {
     event.target.classList.add('open', 'show');
+    moveCount();
 }
 
 function listOpenCards() {
@@ -101,17 +115,17 @@ function listOpenCards() {
 }
 
   function match(){
-  arrOpenCards[0].classList.remove('open', 'show');
-  arrOpenCards[1].classList.remove('open', 'show');
-  arrOpenCards[0].classList.add('match');
-  arrOpenCards[1].classList.add('match');
-}
+      arrOpenCards[0].classList.remove('open', 'show');
+      arrOpenCards[1].classList.remove('open', 'show');
+      arrOpenCards[0].classList.add('match');
+      arrOpenCards[1].classList.add('match');
+      };
 
 function noMatch(){
     setTimeout(function(){
       arrOpenCards[0].classList.remove('open', 'show');
       arrOpenCards[1].classList.remove('open', 'show');
-    }, 1000);
+    }, 650);
 }
 
 
@@ -120,21 +134,85 @@ function listMatchedCards(){
   arrAllMatchedCards = [];
 
   arrAllMatchedCards.push(...allMatchedCards);
-}
-// else if(arrAllMatchedCards.length == "16"){
-    // endOfGame();
-function endOfGame(){
-  console.log("the functioning works")
+
+  if(arrAllMatchedCards.length === 16) {
+    overlayOn();
+}}
+
+function overlayOn(){
+    overlay = document.querySelector('#overlay');
+    button = document.querySelector('.button');
+
+    overlay.style.display = "block";
+    button.style.display = "inline-block";
+
+    document.querySelector(".stats_time").textContent = document.querySelector('.time').textContent
+
+    document.querySelector(".stats_moves").textContent = moves + " Moves";
+
+    // HOW TO REFERENCE THE STARS HERE???
+    let starHTML = document.querySelectorAll('.fa fa-star').innerHTML
+    document.querySelector(".stats_stars").insertAdjacentHTML('beforeend', starHTML)
+
+
+
 }
 
-function moveCounter(){
+function overlayOff(){
+
+    overlay.style.display = "none";
+}
+
+function moveCount(){
+    moves = moves + 1;
+
+    document.querySelector(".moves").textContent = moves;
+
+    let movesTitle = document.querySelector(".movesTitle");
+
+      if(moves == 1) {
+        movesTitle.textContent = "Move";
+      } else{
+        movesTitle.textContent = "Moves";
+      }
 
 }
+
+  if(moves % 10 === 0 && moves > 20) {
+    let stars = document.querySelector('.fa-star');
+    stars.removeChild(stars.lastChild);
+  }
+
+
+function startTiming(start){
+  var start = new Date;
+  let time = document.querySelector('.time')
+  setInterval(function() {
+
+  time.textContent = ((new Date - start) / 1000 + " Seconds");
+}, 1000);
+}
+
+// ANIMATIONS//
+
+$('.card').hover(
+      function(event) {
+          $(this).addClass( "hover" );
+        }, function() {
+          $(this).removeClass( "hover" );
+        }
+      )
+
+
+$('.button').hover(
+    function(event){
+      $(this).addClass('button_hover');
+    }, function() {
+      $(this).removeClass('button_hover');
+    }
+  )
 
 })
-
-
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
