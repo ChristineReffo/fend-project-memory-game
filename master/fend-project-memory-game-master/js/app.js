@@ -249,12 +249,12 @@ $(document).ready(function () {
     }
 
     function resetStars(){
-        let emptyStars = document.getElementsByClassName('fa-star-o');
+        let emptyStars = document.getElementsByClassName('fa-star-o')
             for (let i = 0; i < emptyStars.length; i++) {
 
-            emptyStars[i].classList.add('fa-star');
-            emptyStars[i].classList.remove('fa-star-o');
-            }
+            emptyStars.className = "fa fa-star";
+
+        }
 
     }
 
