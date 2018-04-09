@@ -222,7 +222,7 @@ h1 {
 
 /* Keyframes */
 
-/* All keyframe related code snippets is from http://www.theappguruz.com/tag-tools/web/CSSAnimations/ */
+/* All keyframe related code snippets (including in target elements above) are from http://www.theappguruz.com/tag-tools/web/CSSAnimations/ */
 .flash {
 animation-name: flash;
 animation-duration: 1s;
