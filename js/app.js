@@ -57,12 +57,8 @@ $(document).ready(function () {
             let newI = document.createElement('i');
             let newIClass = newI.classList = cardArray[i];
 
-            newLi;
-            newLiClass;
             fragment.appendChild(newLi);
 
-            newI;
-            newIClass;
             newLi.appendChild(newI);
         }
 
@@ -76,6 +72,8 @@ $(document).ready(function () {
     restart.addEventListener('click', function () {
         init();
     });
+
+// reset grid on click on button
 
     let button = document.querySelector('.button');
 
@@ -113,7 +111,7 @@ $(document).ready(function () {
         }
 
     })
-
+// Check if the two opened cards have the same symbol i.e. class
     function checkMatch() {
         if (arrOpenCards[0].innerHTML !== arrOpenCards[1].innerHTML) {
 
@@ -127,10 +125,12 @@ $(document).ready(function () {
         }
     }
 
+// turn card around
     function turnCard() {
         event.target.classList.add('open', 'show');
     }
 
+// add open cards to an array
     function listOpenCards() {
         cardsOpen = document.querySelectorAll('.open');
         arrOpenCards = [];
@@ -139,7 +139,7 @@ $(document).ready(function () {
     )
         ;
     }
-
+// If the two open cards have the same symbol, they have class 'match' and are removed from the array of open cards
     function match() {
         arrOpenCards[0].classList.remove('open', 'show');
         arrOpenCards[1].classList.remove('open', 'show');
@@ -148,12 +148,14 @@ $(document).ready(function () {
         arrOpenCards = [];
     };
 
+// if they do not mmatch, they turn around again. The timer is needed for both cards to be displayed before noMatch kicks in
     function noMatch() {
         return setTimeout(function () {
             clearCards();
         }, 1800);
     }
 
+// The two opened cards are turned around again, and the animation for 'incorrect' is added withh class 'flash'
     function clearCards() {
           arrOpenCards[0].classList.remove('open', 'show');
           arrOpenCards[1].classList.remove('open', 'show');
@@ -164,6 +166,7 @@ $(document).ready(function () {
           arrOpenCards = [];
     }
 
+// Add all matched cards to an array and check if game complete
     function listMatchedCards() {
         allMatchedCards = document.querySelectorAll('.match');
         arrAllMatchedCards = [];
@@ -175,6 +178,7 @@ $(document).ready(function () {
         }
     }
 
+// If the game is completed, the popup window shows with all statistics
     function overlayOn() {
         overlay = document.querySelector('#overlay');
         button = document.querySelector('.button');
@@ -189,7 +193,7 @@ $(document).ready(function () {
         overlayStars();
         }
 
-
+//  recreate the star rating on the overlay
     function overlayStars (){
       let stars = document.querySelectorAll('.fa-star');
 
@@ -202,7 +206,7 @@ $(document).ready(function () {
             statsStar.appendChild(starHTML);
         }
 
-        for (let i = 0; i < (5 - stars.length); i++){
+        for (let i = 0; i < (3 - stars.length); i++){
             let statsStar = document.querySelector(".stats_stars");
             let starHTMLo = document.createElement('i');
 
@@ -217,6 +221,7 @@ $(document).ready(function () {
         overlay.style.display = "none";
     }
 
+// Count the moves taken to complete the game
     function updateMovesDisplay(){
         document.querySelector(".moves").textContent = moves;
 
@@ -230,14 +235,14 @@ $(document).ready(function () {
 
         if (moves % 5 === 0 && moves > 10) {
             let stars = document.querySelectorAll('.fa-star');
-            if(stars.length>0) {
+            if(stars.length>1) {
                 let lastStar = stars[stars.length - 1];
                 lastStar.classList.remove('fa-star');
                 lastStar.classList.add('fa-star-o');
             }
         }
     }
-
+// timing function with rounding
     function startTiming() {
         start = new Date;
         let time = document.querySelector('.time');
@@ -248,17 +253,22 @@ $(document).ready(function () {
         return timerId;
     }
 
+// set stars back to full on reset
     function resetStars(){
-        let emptyStars = document.getElementsByClassName('fa-star-o');
-            for (let i = 0; i < emptyStars.length; i++) {
+        let emptyStars = document.querySelectorAll('.fa-star-o');
+
+        if (emptyStars.length > 0){
+          for (let i = 0; i < emptyStars.length; i++) {
 
             emptyStars[i].classList.add('fa-star');
             emptyStars[i].classList.remove('fa-star-o');
-            }
-
+          }
+        }
     }
 
 
+
+// reset everything, functionally equivalent to a reload
     function init() {
         // Reset moves
         moves = 0;

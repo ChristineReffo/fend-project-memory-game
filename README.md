@@ -24,6 +24,14 @@ The game can be accessed by clicking the following link: https://christinereffo.
 The code can be accessed, forked and cloned here:
 https://github.com/ChristineReffo/fend-project-memory-game
 
+### Dependencies
+
+This game is built with the following code dependencies:
+1. Bootstrap
+2. ES6
+3. jQuery
+4. Font Awesome
+
 
 ## Contributing
 
