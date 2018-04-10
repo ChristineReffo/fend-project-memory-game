@@ -1,20 +1,46 @@
-# Memory Game Project
+# Memory Card Game
 
 ## Table of Contents
 
+* [Description](#description)
 * [Instructions](#instructions)
+* [Getting Started](#getting started)
 * [Contributing](#contributing)
+
+## Description
+
+The Memory Card Game is an interactive card game, where 8 matching pairs have to be found by using memory.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is an interactive and timed game, where 16 cards are shuffled and laid out closed in a 4x4 square. Your task is to find the matching pairs by only being able to open two cards at a time. Two clicks count as one move, and the objective is to find all pairs with the least amount of moves. A star rating indicates your performance.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Getting Started
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+#### Installing
+
+The game can be accessed by clicking the following link: [https://christinereffo.github.io/].
+
+The code can be accessed, forked and cloned here:
+[https://github.com/ChristineReffo/fend-project-memory-game]
+
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This is a Udacity student project. Contributors are welcome to send pull requests, which will be considered once the project has been reviewed.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Author
+
+Original HTML and CSS structure: Udacity  
+Javascript: Christine Reffo
+
+
+### License
+
+This project is not licensed.
+
+
+### Acknowledgments
+
+Card animations: [http://www.theappguruz.com]
