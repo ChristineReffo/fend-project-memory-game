@@ -104,7 +104,8 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 75%;
+    width: 70%;
+    float: left;
     margin-bottom: 10px;
 }
 
@@ -122,7 +123,7 @@ h1 {
 }
 
 .score-panel .restart {
-    float: right;
+    /* float: left; */
     cursor: pointer;
 }
 
@@ -196,6 +197,7 @@ h1 {
 }
 
 @media screen and (min-width: 601px) and (max-width:800px) {
+
   .card {
     width: 15vw;
     height: 15vw;
@@ -209,14 +211,16 @@ h1 {
 
 @media screen and (min-width: 801px) {
   .card {
-    width: 11vw;
-    height: 11vw;
-    margin-top:20px;
+    width: 8vw;
+    height: 8vw;
+    margin-top:15px;
   }
 
   .deck  {
-    width: 60%;
+    width: 40%;
     padding-top: 20px;
+    margin-top: 40vh;
+    position: absolute;
   }
 }
 
